@@ -1,50 +1,52 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Sync Impact Report:
+- Version change: Initial -> 1.0.0
+- List of modified principles:
+    - [PRINCIPLE_1_NAME] -> 最適化ロジックとUIの完全分離
+    - [PRINCIPLE_2_NAME] -> 徹底した透明性と可視化
+    - [PRINCIPLE_3_NAME] -> 堅牢なエラーハンドリングと親切なUI
+    - [PRINCIPLE_4_NAME] -> モダンなコード品質基準
+    - [PRINCIPLE_5_NAME] -> インタラクティブなユーザー体験
+- Added sections: 技術スタックと制約, 開発ワークフローと検証
+- Removed sections: N/A
+- Templates requiring updates:
+    - .specify/templates/plan-template.md (✅ updated)
+    - .specify/templates/spec-template.md (✅ updated)
+    - .specify/templates/tasks-template.md (✅ updated)
+- Follow-up TODOs: None
+-->
+
+# LP_app Optimization Project Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### 最適化ロジックとUIの完全分離
+最適化ロジック（Pyomoエンジン）とUI（Streamlit表示）を完全に分離する。エンジンはUIなしで独立して動作可能かつテスト可能でなければならない。
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### 徹底した透明性と可視化
+最適化の定式化（目的関数と制約式）を `st.latex` を用いてUI上に明示し、結果だけでなく「制約の余力（Slack）」や「ボトルネック」を可視化する。ユーザーが「なぜこの結果になったか」を直感的に理解できるようにする。
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### 堅牢なエラーハンドリングと親切なUI
+ソルバーが解を見つけられなかった（Infeasible）場合、単にエラーを表示するのではなく、ユーザーが次に取るべき行動（制約の緩和など）を示唆する親切なUIを提供する。
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### モダンなコード品質基準
+`Ruff` を使用して静的解析とコード整形を自動化し、PEP8 に準拠した一貫性のあるコードを維持する。型ヒントを積極的に使用して開発の堅牢性を確保する。
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### インタラクティブなユーザー体験
+Plotly や Altair を活用し、グラフを動的に操作可能にする。ユーザーがパラメータを変更した際の感度（Sensitivity）を直感的に感じられるようにツールチップやフィルターを活用して設計する。
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+## 技術スタックと制約
+- **言語**: Python
+- **最適化ライブラリ**: Pyomo
+- **ソルバー**: CBC (デフォルト)
+- **UIフレームワーク**: Streamlit
+- **可視化**: Plotly, Altair
+- **Linter/Formatter**: Ruff
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
-
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
-
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+## 開発ワークフローと検証
+全てのコード変更は `Ruff` のチェックを通過しなければならず、最適化エンジンに対する単体テスト（Unit Test）が推奨される。`/speckit.plan` および `/speckit.tasks` は、これらの原則を遵守していることを確認するステップを含む必要がある。
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
+この憲法はプロジェクトの基本指針であり、全ての開発活動（`/speckit.implement`）はこの指針に従う必要がある。重要な指針の追加や変更はバージョンの繰り上げを行い、履歴を管理する。
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
-
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0 | **Ratified**: 2026-02-14 | **Last Amended**: 2026-02-14
